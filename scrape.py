@@ -8,16 +8,17 @@ from bs4 import BeautifulSoup
 from spotipy.oauth2 import SpotifyClientCredentials
 
 if len(sys.argv) == 5:
+    scope = 'playlist-read-private playlist-modify-private playlist-modify-public'
     username = sys.argv[1]
     client_id = sys.argv[2]
     client_secret = sys.argv[3]
     playlist_uri = sys.argv[4]
     token = util.prompt_for_user_token(
                                 username=username,
-                                scope='playlist-read-private playlist-modify-private',
+                                scope=scope,
                                 client_id=client_id,
                                 client_secret=client_secret,
-                                redirect_uri='https://localhost:8080')
+                                redirect_uri='http://localhost:8888/callback')
 else:
     print("Ensure that the arguments you supply are 'username' 'client_id' 'client_secret' 'playlist_uri'")
     sys.exit(1)
